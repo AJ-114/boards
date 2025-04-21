@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>관심 급상승 커뮤니티</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9fafb;
+      padding: 20px;
+      color: #222;
+    }
+
+    .section-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .updated-time {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    .stock-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stock-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .stock-item:hover {
+      background: #f0f4ff;
+    }
+
+    .rank-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .rank-1 { background-color: #e50000; }
+    .rank-2 { background-color: #f59e0b; }
+    .rank-3 { background-color: #b91c1c; }
+    .rank-4, .rank-5 { background-color: #6b7280; }
+
+    .sentiment {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .positive { color: #0070f3; }
+    .neutral { color: #999; }
+    .negative { color: #e00; }
+
+    .desc-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .hashtags {
+      color: #0070f3;
+      margin-right: 6px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section-title">관심 급상승 커뮤니티</div>
+  <div class="updated-time">오늘 13:16 기준</div>
+
+  <div class="stock-list">
+    <div class="stock-item" onmouseover="showDesc('TSLL')">
+      <div><span class="rank-circle rank-1">1</span> 서울식품</div>
+      <div class="sentiment positive">긍정</div>
+    </div>
+    <div class="stock-item" onmouseover="showDesc('SOXL')">
+      <div><span class="rank-circle rank-2">2</span> 성신양회</div>
+      <div class="sentiment neutral">중립</div>
+    </div>
+    <div class="stock-item" onmouseover="showDesc('TSLA')">
+      <div><span class="rank-circle rank-3">3</span> 유유제약</div>
+      <div class="sentiment negative">부정</div>
+    </div>
+    <div class="stock-item" onmouseover="showDesc('SANGJI')">
+      <div><span class="rank-circle rank-4">4</span> 상지건설</div>
+      <div class="sentiment neutral">중립</div>
+    </div>
+    <div class="stock-item" onmouseover="showDesc('NVDA')">
+      <div><span class="rank-circle rank-5">5</span> 한양증권</div>
+      <div class="sentiment positive">긍정</div>
+    </div>
+  </div>
+
+  <div class="desc-box" id="descBox">
+    이 토론글은 대부분 투자자들이 특정 주식의 상승 가능성에 대해 기대와 희망을 품고 있다는 점에서 긍정적인 전망을 보여줍니다.<br>
+    투자자들은 정책 호재, 시장의 강한 매수세, 기관과 대형주의 매수 움직임에 주목하며 기대심리를 드러내고 있습니다.<br>
+    이러한 기대감은 투자자들이 자신감과 희망을 가지고 적극적으로 매수 공세에 나서는 모습에서 보입니다.<br><br>
+    <span class="hashtags">#상승 기대</span>
+    <span class="hashtags">#강한 매수세</span>
+    <span class="hashtags">#정책 기대감</span>
+    <span class="hashtags">#테마주 관심</span>
+    <span class="hashtags">#거래량 증가</span>
+  </div>
+
+  <script>
+    const descriptions = {
+      TSLL: `이 토론글은 대부분 투자자들이 특정 주식의 상승 가능성에 대해 기대와 희망을 품고 있다는 점에서 긍정적인 전망을 보여줍니다. 투자자들은 정책 호재, 시장의 강한 매수세, 기관과 대형주주의 매수 움직임에 주목하며 기대심리를 드러내고 있습니다. 특히 4년 주기 떡상, 대장주 움직임, 밸류업 기대 등 장기적인 상승 전망을 지지하는 논리도 포함되어 있어 시장의 낙관적 심리를 반영합니다. 이러한 기대감은 투자자들이 자신감과 희망을 가지고 적극적으로 매수 공세에 나서는 모습에서 보입니다.
+.
+
+#상승기대 #강한매수세 #정책기대감 #테마주관심 #거래량증가`,
+
+      SOXL: `많은 사람들이 세종시 행정수도 이전과 관련된 정책 기대와 기대감에 대해 긍정적인 심리를 보이고 있습니다. 정책 발표와 함께 관련 주식들이 강하게 반등하며 투자 기대가 높아지고, 대선과 정부 정책이 시장에 미치는 영향을 신뢰하는 모습이 강하게 드러납니다. 특히, 세종시 부지와 관련 기업들이 앞으로의 성장 가능성으로 인해 투자자들의 관심을 받고 있으며, 정부의 적극적인 추진으로 시장의 기대감이 확산되고 있습니다. 또한, 자산 가치 상승에 따른 부동산 및 관련 산업의 호재 가능성도 함께 기대하는 모습이 일관된 긍정 심리로 나타납니다.
+.
+
+#세종시정책기대, #관련주상승기대, #행정수도이전기대감, #부동산및자산가치상승, #대선영향력, #정책수혜기대
+`,
+
+      TSLA: `이 토론글은 투자자들이 시장의 호재와 기대를 바탕으로 긍정적인 전망을 공유하고 있음을 보여줍니다. 거래량이 늘어나며 거래세력의 움직임이 활발해지고 있고, 우선주와 전환사채의 오버행 우려가 해소되면서 주가 상승 기대감이 높아지고 있습니다. 또한, 내일 배당과 주주환원 정책에 대한 기대도 투자심리를 긍정적으로 만드는데 기여하고 있습니다. 한동훈 테마 역시 강세를 보이고 있어 특정 인물이나 정책에 대한 기대심리도 함께 작용하고 있는 것으로 보입니다. 이러한 요소들이 모여 시장의 전반적인 긍정적 분위기를 형성하는 것으로 분석됩니다.
+.
+
+#주가상승기대, #거래량증가, #주주환원정책, #배당기대, #특정인물테마, #우선주강세, #시장관심도높음
+`,
+
+      SANGJI: `이 토론글은 배당금 수령에 대한 기대와 만족감을 표현하고 있으며, 배당금의 일정과 금액이 확실하다는 점에서 투자자의 안정성을 강조하는 공통된 심리를 보여줍니다. 사람들은 신뢰할 수 있는 수익 창출 방안을 확인함으로써 투자에 대한 안도감과 긍정적인 태도를 가지게 됩니다. 이는 배당금에 대한 기대와 실제 수령 경험이 투자심리 형성에 큰 영향을 미친다는 점을 보여줍니다.
+.
+
+#건설주 #단기급등 #차익실현 #관망세`,
+
+      NVDA: `엔비디아는 AI 관련 수혜 기대감으로 투자자들 사이에서 긍정적인 평가를 받고 있습니다.
+꾸준한 수요 전망과 반도체 업황 회복 기대가 반영되며 매수 심리가 높아지고 있습니다.
+
+#배당금예상, #투자안정성, #수익기대`
+    };
+
+    function showDesc(key) {
+      const box = document.getElementById('descBox');
+      const formatted = descriptions[key]
+        .replace(/\n/g, '<br>')
+        .replace(/#(\S+)/g, '<span class="hashtags">#$1</span>');
+      box.innerHTML = formatted;
+    }
+  </script>
+
+</body>
+</html>
